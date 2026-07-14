@@ -26,20 +26,33 @@ export default function ConfirmPage() {
     0
   );
 
+
   const handleOrder = () => {
     const now = new Date();
 
     const orderId = `ORDER-${now.getTime()}`;
 
-    const orderdata = {
-      orederId,
+    const orderData = {
+      orderId,
       items: cart,
       totalPrice,
       orderedAt: now.toISOString(),
       status: "received",
   };
 
-  localStorage
+  localStorage.setItem("lastOrder", JSON.stringify(orderData));
+
+  const savedOrders = localStorage.getItem("orders");
+  const orders = savedOrders ? JSON.parse(savedOrders) : [];
+
+  orders.push(orderData);
+
+  localStorage.setItem("orders" , JSON.stringify(orders));
+
+  localStorage.removeItem("cart");
+
+  router.push("/complete");
+};
 
   return (
     <main

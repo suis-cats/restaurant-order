@@ -1,9 +1,18 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function CompletePage() {
   const router = useRouter();
+    const [order, setOrder] = useState<any>(null);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("lastOrder");
+    if (saved) {
+      setOrder(JSON.parse(saved));
+    }
+  }, []); 
 
   return (
     <main
@@ -38,6 +47,16 @@ export default function CompletePage() {
         >
           ご注文ありがとうございました！
         </h1>
+        {order && (
+          <h2
+          style={{
+            marginTop: "20px",
+            fontSize: "28px",
+          }}
+        >
+          注文番号: {order.orderId}
+        </h2>
+        )}
 
         <p
           style={{
