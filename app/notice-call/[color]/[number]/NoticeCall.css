@@ -1,0 +1,14 @@
+.notice-call-page {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notice-number {
+  font-size: 120px;
+  font-weight: bold;
+  color: white;
+}
